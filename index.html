@@ -31,7 +31,7 @@
     "telephone": ["0714028981", "0775813110"],
     "priceRange": "$200 – $450",
     "logo": "images/clint-kennels-logo.jpg",
-    "sameAs": ["https://www.instagram.com/clintkennels/"]
+    "sameAs": ["https://www.instagram.com/clintkennels/", "https://www.facebook.com/profile.php?id=61584107041089"]
   }
   </script>
 
@@ -103,7 +103,7 @@
 
     section[id] { scroll-margin-top: var(--nav-h); }
 
-    /* Lock page scroll while the mobile menu or the reserve sheet is open */
+    /* Lock page scroll while the mobile menu or the enquiry sheet is open */
     html.menu-open, html:has(dialog[open]) { overflow: hidden; }
 
     .container { width: min(100% - var(--gutter) * 2, 980px); margin-inline: auto; }
@@ -503,7 +503,7 @@
        ===================================================================== */
     .footer { background: var(--c-gray); color: var(--c-text-3); font-size: 12px; line-height: 1.4; letter-spacing: -.01em; padding: 22px 0 26px; }
 
-    /* Footer top row: brand + Instagram */
+    /* Footer top row: brand + social links */
     .footer__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding-bottom: 18px; margin-bottom: 16px; border-bottom: 1px solid var(--c-line); }
     .footer__brand { display: inline-flex; align-items: center; gap: 8px; color: var(--c-text) !important; font-size: 15px; font-weight: 300; letter-spacing: .01em; text-decoration: none !important; }
     .footer__brand img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; }
@@ -517,7 +517,8 @@
     }
     .social__icon svg { width: 17px; height: 17px; }
     .social:hover .social__icon { background: var(--c-text); color: #fff; box-shadow: none; }
-    .social:hover .social__text { text-decoration: underline; }
+    .socials { display: inline-flex; align-items: center; gap: 10px; }
+    .socials__label { margin-right: 2px; font-size: 12px; color: var(--c-text-3); }
 
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
     .footer__note { padding-bottom: 16px; border-bottom: 1px solid var(--c-line); }
@@ -528,7 +529,7 @@
     .footer a { color: #424245; }
 
     /* =====================================================================
-       13. RESERVE SHEET (modal dialog)
+       13. ENQUIRY SHEET (modal dialog)
        ===================================================================== */
     .sheet {
       width: min(100% - 32px, 440px);
@@ -656,7 +657,7 @@
       </nav>
 
       <div class="nav__actions">
-        <a class="btn btn-primary btn-xs" href="#available">Reserve</a>
+        <a class="btn btn-primary btn-xs" href="#available">Enquire</a>
         <button class="nav__toggle" type="button" aria-controls="nav-menu" aria-expanded="false" aria-label="Open menu"><span></span></button>
       </div>
     </div>
@@ -674,7 +675,7 @@
         <p class="hero__price reveal" style="--d:200ms">Nine breeds available now. Puppies from $200.</p>
         <div class="hero__links reveal" style="--d:280ms">
           <a class="link-chevron" href="#about">Learn more</a>
-          <a class="link-chevron" href="#available">Reserve yours</a>
+          <a class="link-chevron" href="#available">Enquire now</a>
         </div>
       </div>
 
@@ -751,7 +752,7 @@
               </dl>
               <p class="product-card__price"><strong>$450</strong></p>
               <div class="product-card__actions">
-                <a class="btn btn-primary btn-sm" href="#contact" data-reserve data-breed="Labrador Retriever" data-price="$450">Reserve</a>
+                <a class="btn btn-primary btn-sm" href="#contact" data-enquire data-breed="Labrador Retriever" data-price="$450">Enquire</a>
                 <a class="link-chevron" href="#available">See all breeds</a>
               </div>
             </div>
@@ -780,7 +781,7 @@
               </dl>
               <p class="product-card__price"><strong>$400</strong></p>
               <div class="product-card__actions">
-                <a class="btn btn-primary btn-sm" href="#contact" data-reserve data-breed="German Shepherd" data-price="$400">Reserve</a>
+                <a class="btn btn-primary btn-sm" href="#contact" data-enquire data-breed="German Shepherd" data-price="$400">Enquire</a>
                 <a class="link-chevron" href="#available">See all breeds</a>
               </div>
             </div>
@@ -809,7 +810,7 @@
               </dl>
               <p class="product-card__price"><strong>$400</strong></p>
               <div class="product-card__actions">
-                <a class="btn btn-primary btn-sm" href="#contact" data-reserve data-breed="Boerboel" data-price="$400">Reserve</a>
+                <a class="btn btn-primary btn-sm" href="#contact" data-enquire data-breed="Boerboel" data-price="$400">Enquire</a>
                 <a class="link-chevron" href="#available">See all breeds</a>
               </div>
             </div>
@@ -821,7 +822,7 @@
 
     <!-- ===================================================================
          AVAILABLE PUPS — every breed with its price.
-         To change a price, edit both the visible price and data-price on its Reserve button.
+         To change a price, edit both the visible price and data-price on its Enquire button.
          data-size (small / medium / large) controls the size filter.
          =================================================================== -->
     <section class="available" id="available" aria-labelledby="available-title">
@@ -858,7 +859,7 @@
               <p class="pup-card__desc">Loyal. Fearless. Brilliant.</p>
               <div class="pup-card__row">
                 <p class="pup-card__price">$400</p>
-                <a class="btn btn-primary btn-sm" href="#contact" data-reserve data-breed="German Shepherd" data-price="$400">Reserve</a>
+                <a class="btn btn-primary btn-sm" href="#contact" data-enquire data-breed="German Shepherd" data-price="$400">Enquire</a>
               </div>
             </div>
           </article>
@@ -877,7 +878,7 @@
               <p class="pup-card__desc">Gentle giant. Born guardian.</p>
               <div class="pup-card__row">
                 <p class="pup-card__price">$400</p>
-                <a class="btn btn-primary btn-sm" href="#contact" data-reserve data-breed="Boerboel" data-price="$400">Reserve</a>
+                <a class="btn btn-primary btn-sm" href="#contact" data-enquire data-breed="Boerboel" data-price="$400">Enquire</a>
               </div>
             </div>
           </article>
@@ -896,7 +897,7 @@
               <p class="pup-card__desc">Tiny, silky, and endlessly sweet.</p>
               <div class="pup-card__row">
                 <p class="pup-card__price">$250</p>
-                <a class="btn btn-primary btn-sm" href="#contact" data-reserve data-breed="Maltese" data-price="$250">Reserve</a>
+                <a class="btn btn-primary btn-sm" href="#contact" data-enquire data-breed="Maltese" data-price="$250">Enquire</a>
               </div>
             </div>
           </article>
@@ -915,7 +916,7 @@
               <p class="pup-card__desc">Lion-like looks. Teddy-bear heart.</p>
               <div class="pup-card__row">
                 <p class="pup-card__price">$450</p>
-                <a class="btn btn-primary btn-sm" href="#contact" data-reserve data-breed="Chinese Chow Chow" data-price="$450">Reserve</a>
+                <a class="btn btn-primary btn-sm" href="#contact" data-enquire data-breed="Chinese Chow Chow" data-price="$450">Enquire</a>
               </div>
             </div>
           </article>
@@ -934,7 +935,7 @@
               <p class="pup-card__desc">The classic. Friendly and brave.</p>
               <div class="pup-card__row">
                 <p class="pup-card__price">$450</p>
-                <a class="btn btn-primary btn-sm" href="#contact" data-reserve data-breed="Labrador Retriever" data-price="$450">Reserve</a>
+                <a class="btn btn-primary btn-sm" href="#contact" data-enquire data-breed="Labrador Retriever" data-price="$450">Enquire</a>
               </div>
             </div>
           </article>
@@ -953,7 +954,7 @@
               <p class="pup-card__desc">Pocket-sized. Boundless energy.</p>
               <div class="pup-card__row">
                 <p class="pup-card__price">$200</p>
-                <a class="btn btn-primary btn-sm" href="#contact" data-reserve data-breed="Jack Russell" data-price="$200">Reserve</a>
+                <a class="btn btn-primary btn-sm" href="#contact" data-enquire data-breed="Jack Russell" data-price="$200">Enquire</a>
               </div>
             </div>
           </article>
@@ -972,7 +973,7 @@
               <p class="pup-card__desc">Sharp mind. Tireless drive.</p>
               <div class="pup-card__row">
                 <p class="pup-card__price">$400</p>
-                <a class="btn btn-primary btn-sm" href="#contact" data-reserve data-breed="Belgian Malinois" data-price="$400">Reserve</a>
+                <a class="btn btn-primary btn-sm" href="#contact" data-enquire data-breed="Belgian Malinois" data-price="$400">Enquire</a>
               </div>
             </div>
           </article>
@@ -991,7 +992,7 @@
               <p class="pup-card__desc">Calm confidence. Devoted protector.</p>
               <div class="pup-card__row">
                 <p class="pup-card__price">$400</p>
-                <a class="btn btn-primary btn-sm" href="#contact" data-reserve data-breed="Rottweiler" data-price="$400">Reserve</a>
+                <a class="btn btn-primary btn-sm" href="#contact" data-enquire data-breed="Rottweiler" data-price="$400">Enquire</a>
               </div>
             </div>
           </article>
@@ -1010,7 +1011,7 @@
               <p class="pup-card__desc">Majestic stature. Gentle soul.</p>
               <div class="pup-card__row">
                 <p class="pup-card__price">$400</p>
-                <a class="btn btn-primary btn-sm" href="#contact" data-reserve data-breed="Great Dane" data-price="$400">Reserve</a>
+                <a class="btn btn-primary btn-sm" href="#contact" data-enquire data-breed="Great Dane" data-price="$400">Enquire</a>
               </div>
             </div>
           </article>
@@ -1140,12 +1141,19 @@
           <img src="images/clint-kennels-logo.jpg" alt="" width="26" height="26" loading="lazy" decoding="async">
           Clint Kennels
         </a>
-        <a class="social" href="https://www.instagram.com/clintkennels/" target="_blank" rel="noopener me">
-          <span class="social__icon" aria-hidden="true">
-            <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg>
-          </span>
-          <span class="social__text">Follow <strong>@clintkennels</strong><span class="sr-only"> on Instagram</span></span>
-        </a>
+        <div class="socials">
+          <span class="socials__label">Follow us</span>
+          <a class="social" href="https://www.instagram.com/clintkennels/" target="_blank" rel="noopener me" aria-label="Clint Kennels on Instagram" title="Instagram">
+            <span class="social__icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg>
+            </span>
+          </a>
+          <a class="social" href="https://www.facebook.com/profile.php?id=61584107041089" target="_blank" rel="noopener me" aria-label="Clint Kennels on Facebook" title="Facebook">
+            <span class="social__icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </span>
+          </a>
+        </div>
       </div>
       <div class="footer__note">
         <p>Prices are per puppy and subject to availability. Call to confirm which puppies are ready for their new homes.</p>
@@ -1165,9 +1173,9 @@
   </footer>
 
   <!-- =====================================================================
-       RESERVE SHEET — opens when any "Reserve" button is pressed
+       ENQUIRY SHEET — opens when any "Enquire" button is pressed
        ===================================================================== -->
-  <dialog class="sheet" id="reserve-sheet" aria-labelledby="sheet-title">
+  <dialog class="sheet" id="enquire-sheet" aria-labelledby="sheet-title">
     <div class="sheet__inner">
       <form method="dialog">
         <button class="sheet__close" aria-label="Close">
@@ -1175,9 +1183,9 @@
         </button>
       </form>
       <img class="sheet__logo" src="images/clint-kennels-logo.jpg" alt="" width="64" height="64">
-      <h2 class="sheet__title" id="sheet-title">Reserve your <span data-sheet-breed>puppy</span>.</h2>
+      <h2 class="sheet__title" id="sheet-title">Enquire about the <span data-sheet-breed>puppy</span>.</h2>
       <p class="sheet__price" data-sheet-price></p>
-      <p class="sheet__text">Message us on WhatsApp to reserve. We'll answer your questions and arrange delivery to your door.</p>
+      <p class="sheet__text">Message us on WhatsApp to ask about availability or reserve your puppy. We'll answer your questions and arrange delivery to your door.</p>
       <div class="sheet__actions">
         <!-- data-sheet-whatsapp holds each WhatsApp number (country code + number, no leading 0).
              The script adds a ready-written message naming the breed and price. -->
@@ -1193,7 +1201,7 @@
      Clint Kennels — interactions
      1. Footer year          5. Scroll-scrubbed headline
      2. Navigation           6. Size filter
-     3. Smooth scrolling     7. Reserve sheet
+     3. Smooth scrolling     7. Enquiry sheet
      4. Reveal on scroll     8. Image fallback
      ====================================================================== */
   (function () {
@@ -1206,7 +1214,7 @@
 
     var nav = document.getElementById('nav');
     var toggle = nav.querySelector('.nav__toggle');
-    var sheet = document.getElementById('reserve-sheet');
+    var sheet = document.getElementById('enquire-sheet');
 
     /* 1. Footer year --------------------------------------------------- */
     document.querySelectorAll('[data-year]').forEach(function (el) {
@@ -1243,13 +1251,13 @@
     });
     window.matchMedia('(min-width: 834px)').addEventListener('change', function (e) { if (e.matches) setMenu(false); });
 
-    /* 3. Smooth scrolling (+ Reserve buttons) -------------------------- */
+    /* 3. Smooth scrolling (+ Enquire buttons) -------------------------- */
     document.addEventListener('click', function (e) {
-      // Reserve buttons open the sheet. Without JS they fall back to #contact.
-      var reserve = e.target.closest('[data-reserve]');
-      if (reserve && sheet && typeof sheet.showModal === 'function') {
+      // Enquire buttons open the sheet. Without JS they fall back to #contact.
+      var enquire = e.target.closest('[data-enquire]');
+      if (enquire && sheet && typeof sheet.showModal === 'function') {
         e.preventDefault();
-        openSheet(reserve);
+        openSheet(enquire);
         return;
       }
 
@@ -1391,7 +1399,7 @@
       window.addEventListener('load', function () { moveThumb(activeButton()); });
     }
 
-    /* 7. Reserve sheet ------------------------------------------------- */
+    /* 7. Enquiry sheet ------------------------------------------------- */
     function openSheet(trigger) {
       var breed = trigger.getAttribute('data-breed') || 'puppy';
       var price = trigger.getAttribute('data-price');
@@ -1400,7 +1408,7 @@
         (price ? price + ' · ' : '') + 'Healthy · Vaccinated · Raised with love';
 
       // Pre-write the WhatsApp message so the customer just taps Send.
-      var message = 'Hi Clint Kennels! I would like to reserve a ' + breed + ' puppy' + (price ? ' (' + price + ')' : '') + '.';
+      var message = "Hi Clint Kennels! I'm interested in a " + breed + ' puppy' + (price ? ' (' + price + ')' : '') + '. Is one available?';
       sheet.querySelectorAll('[data-sheet-whatsapp]').forEach(function (link) {
         link.href = 'https://wa.me/' + link.getAttribute('data-sheet-whatsapp') + '?text=' + encodeURIComponent(message);
       });
