@@ -1,0 +1,165 @@
+/* =========================================================================
+   Clint Kennels — styles for the legal pages (privacy.html, terms.html)
+   Uses the same design tokens as index.html so the pages feel like one site.
+   ========================================================================= */
+
+/* 1. Tokens ---------------------------------------------------------------- */
+:root {
+  --c-white: #ffffff;
+  --c-gray: #f5f5f7;
+  --c-gray-2: #e8e8ed;
+  --c-text: #1d1d1f;
+  --c-text-2: #6e6e73;
+  --c-text-3: #86868b;
+  --c-line: #d2d2d7;
+  --c-blue: #0071e3;
+  --c-blue-hover: #0077ed;
+
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --radius: 18px;
+  --ease: cubic-bezier(.28, .11, .32, 1);
+  --nav-h: 48px;
+  --gutter: 22px;
+}
+
+/* 2. Base ------------------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 17px; line-height: 1.47; letter-spacing: -.022em;
+  color: var(--c-text); background: var(--c-white);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { text-wrap: balance; }
+a { color: var(--c-blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--c-blue); outline-offset: 3px; border-radius: 6px; }
+
+.container { width: min(100% - var(--gutter) * 2, 692px); margin-inline: auto; }
+.container--wide { width: min(100% - var(--gutter) * 2, 1200px); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.icon { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+.skip-link {
+  position: absolute; left: 12px; top: -60px; z-index: 1000;
+  padding: 10px 18px; border-radius: 980px;
+  background: var(--c-text); color: #fff; font-size: 14px; transition: top .2s;
+}
+.skip-link:focus { top: 12px; text-decoration: none; }
+
+/* 3. Buttons --------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 5px 13px; border-radius: 980px;
+  font-size: 12px; letter-spacing: -.01em; white-space: nowrap;
+  background: var(--c-blue); color: #fff; text-decoration: none !important;
+  transition: background-color .3s var(--ease), transform .3s var(--ease);
+}
+.btn:hover { background: var(--c-blue-hover); }
+.btn:active { transform: scale(.97); }
+
+/* 4. Navigation (glass bar) ------------------------------------------------ */
+.nav { position: sticky; top: 0; z-index: 100; height: var(--nav-h); border-bottom: 1px solid rgba(0, 0, 0, .08); }
+.nav::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: rgba(255, 255, 255, .72);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .nav::before { background: rgba(255, 255, 255, .96); }
+}
+.nav__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--c-text); text-decoration: none !important; }
+.brand img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1px rgba(0, 0, 0, .08); }
+.brand span { font-size: 19px; font-weight: 300; letter-spacing: .01em; white-space: nowrap; }
+.nav__right { display: flex; align-items: center; gap: 24px; }
+.nav__link { font-size: 12px; color: rgba(0, 0, 0, .8); }
+.nav__link:hover { color: #000; text-decoration: none; }
+
+/* 5. Legal document -------------------------------------------------------- */
+.legal { padding: clamp(56px, 8vw, 96px) 0 clamp(88px, 10vw, 140px); }
+
+.legal__eyebrow { font-size: 17px; font-weight: 600; color: var(--c-text-2); margin-bottom: 8px; }
+.legal h1 { font-size: clamp(36px, 6vw, 56px); font-weight: 700; line-height: 1.07; letter-spacing: -.02em; }
+.legal__updated { margin-top: 14px; font-size: 14px; color: var(--c-text-3); }
+.legal__lead { margin-top: 28px; font-size: clamp(19px, 2vw, 21px); line-height: 1.43; color: var(--c-text); }
+
+/* "At a glance" box */
+.summary { margin-top: 40px; padding: 28px 32px 30px; border-radius: var(--radius); background: var(--c-gray); }
+.summary h2 { font-size: 19px; font-weight: 700; margin: 0 0 12px; }
+.summary ul { margin: 0; padding-left: 1.2em; }
+.summary li { font-size: 17px; line-height: 1.5; }
+.summary li + li { margin-top: 8px; }
+
+/* Table of contents */
+.toc { margin-top: 44px; padding-bottom: 36px; border-bottom: 1px solid var(--c-line); }
+.toc h2 { font-size: 14px; font-weight: 600; color: var(--c-text-2); margin-bottom: 12px; }
+.toc ol { margin: 0; padding-left: 1.4em; columns: 2; column-gap: 40px; font-size: 15px; }
+.toc li { margin: 0 0 8px; break-inside: avoid; color: var(--c-text-3); }
+
+/* Sections */
+.legal section { padding-top: 44px; scroll-margin-top: calc(var(--nav-h) + 16px); }
+.legal section h2 { font-size: clamp(22px, 2.6vw, 28px); font-weight: 700; line-height: 1.17; letter-spacing: .004em; margin-bottom: 14px; }
+.legal section h3 { font-size: 17px; font-weight: 600; margin: 24px 0 6px; }
+.legal section p,
+.legal section li { font-size: 17px; line-height: 1.6; color: #333336; }
+.legal section p + p,
+.legal section ul + p,
+.legal section p + ul { margin-top: 14px; }
+.legal section ul { margin-bottom: 0; padding-left: 1.25em; }
+.legal section li + li { margin-top: 8px; }
+.legal strong { color: var(--c-text); font-weight: 600; }
+
+.contact-list { list-style: none; padding: 0 !important; margin-top: 16px !important; }
+.contact-list li { display: flex; gap: 12px; }
+.contact-list li span:first-child { min-width: 90px; color: var(--c-text-3); }
+
+.legal__note { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--c-line); font-size: 14px; color: var(--c-text-3); }
+
+/* 6. Footer ---------------------------------------------------------------- */
+.footer { background: var(--c-gray); color: var(--c-text-3); font-size: 12px; line-height: 1.4; letter-spacing: -.01em; padding: 22px 0 26px; }
+.footer .container { width: min(100% - var(--gutter) * 2, 980px); }
+.footer__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding-bottom: 18px; margin-bottom: 16px; border-bottom: 1px solid var(--c-line); }
+.footer__brand { display: inline-flex; align-items: center; gap: 8px; color: var(--c-text) !important; font-size: 15px; font-weight: 300; letter-spacing: .01em; text-decoration: none !important; }
+.footer__brand img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; }
+.social { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; text-decoration: none !important; }
+.social__icon {
+  display: grid; place-items: center;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: #fff; color: var(--c-text);
+  box-shadow: inset 0 0 0 1px var(--c-line);
+  transition: background-color .3s var(--ease), color .3s var(--ease), box-shadow .3s var(--ease);
+}
+.social__icon svg { width: 17px; height: 17px; }
+.social:hover .social__icon { background: var(--c-text); color: #fff; box-shadow: none; }
+.social:hover .social__text { text-decoration: underline; }
+.footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 24px; }
+.footer__links { display: flex; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; }
+.footer__links li + li::before { content: ""; display: inline-block; height: 10px; margin: 0 10px; border-left: 1px solid var(--c-line); vertical-align: -1px; }
+.footer a { color: #424245; }
+.footer a[aria-current="page"] { color: var(--c-text-3); pointer-events: none; }
+
+/* 7. Responsive ------------------------------------------------------------ */
+@media (max-width: 734px) {
+  :root { --gutter: 20px; }
+  .nav__link { display: none; }
+  .brand span { font-size: 17px; }
+  .summary { padding: 24px 22px 26px; }
+  .toc ol { columns: 1; }
+  .contact-list li { flex-direction: column; gap: 0; }
+  .footer__bottom { flex-direction: column-reverse; align-items: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+@media print {
+  .nav, .footer, .toc, .skip-link { display: none; }
+  .legal { padding: 0; }
+}
